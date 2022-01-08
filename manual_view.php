@@ -43,7 +43,8 @@ $thumbnail_url = $record["youtube_thumbnail"];
 $embedded_url = str_replace("watch?v=", "embed/", $thumbnail_url);
 
   $output .= "
-        <div>
+  <div id='all'>
+        <div id='check'>
             <input type='checkbox' name='id[]' value='{$record["id"]}'>            
         </div>
 		<div id='contents'>         
@@ -67,6 +68,7 @@ $embedded_url = str_replace("watch?v=", "embed/", $thumbnail_url);
                 <p>タナカナカナ</p>
             </div> 
         </div>
+    </div>
   ";
 }
 ?>
