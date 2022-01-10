@@ -1,5 +1,6 @@
 <?php
 include("functions.php");
+check_login();
 // id受け取り
 $id = $_GET['id'];
 
@@ -40,7 +41,7 @@ $updated_day = substr($record["updated_at"], 0, 10);
 </head>
 
 <body id="top">
-	<?php include('header.html'); ?>
+	<?php include('header.php'); ?>
 
    
 	<div id="mainManual">
@@ -52,7 +53,7 @@ $updated_day = substr($record["updated_at"], 0, 10);
                 <p>更新日：<?= $updated_day ?></p>
             </div>  
             <div id='detail_user'>
-                <p>編集者：タナカナカナ</p>
+                <p>編集者：<?= $record["user_name"] ?></p>
             </div> 
         </div>        
 		<div id="detail_contents">            

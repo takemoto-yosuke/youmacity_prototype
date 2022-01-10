@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="ja">
 
@@ -11,7 +15,7 @@
 </head>
 
 <body id="top">
-	<?php include('header.html'); ?>
+	<?php include('header.php'); ?>
 
 	<div id="mainImg">
 		<img src="images/mainImg.jpg" alt="">

@@ -13,3 +13,12 @@ try {
   exit();
 }
 }
+
+function check_login()
+{
+  session_start();
+  if (!isset($_SESSION["user_name"])) {
+    header('Location:login_page.php');
+    exit();
+  } 
+}

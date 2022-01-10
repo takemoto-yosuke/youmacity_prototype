@@ -1,5 +1,6 @@
 <?php
 include("functions.php");
+check_login();
 // id受け取り
 $id = $_GET['id'];
 
@@ -36,7 +37,7 @@ $record = $stmt->fetch(PDO::FETCH_ASSOC);
 </head>
 
 <body id="top">
-	<?php include('header.html'); ?>
+	<?php include('header.php'); ?>
 
     <div id="manual_create">
         <div id="manual_create_header">

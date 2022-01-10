@@ -1,6 +1,7 @@
 <?php
 
 include('functions.php');
+check_login();
 $pdo = connect_to_db();
 
 $sql = 'SELECT * FROM manual ORDER BY updated_at DESC';
@@ -65,7 +66,7 @@ $embedded_url = str_replace("watch?v=", "embed/", $thumbnail_url);
 
             </div>  
             <div id='user'>
-                <p>タナカナカナ</p>
+                <p>{$record["user_name"]}</p>
             </div> 
         </div>
     </div>
@@ -87,7 +88,7 @@ $embedded_url = str_replace("watch?v=", "embed/", $thumbnail_url);
 </head>
 
 <body id="top">
-	<?php include('header.html'); ?>
+	<?php include('header.php'); ?>
 
    
 	<div id="mainManual">

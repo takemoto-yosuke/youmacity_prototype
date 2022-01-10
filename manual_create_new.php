@@ -1,3 +1,7 @@
+<?php
+include('functions.php');
+check_login();
+?>
 <!doctype html>
 <html lang="ja">
 
@@ -13,7 +17,7 @@
 </head>
 
 <body id="top">
-	<?php include('header.html'); ?>
+	<?php include('header.php'); ?>
 
     <div id="manual_create">
         <div id="manual_create_header">
@@ -25,7 +29,7 @@
                 <input type="text" name="youtube_thumbnail" style="width: 1200px;">
             </div>
             <div id="form_contents">
-                <p>内容</p> 
+                <p>本文</p> 
                 <!--
                 <input type="text" name="contents" style="width: 1200px; height: 300px;">
 -->
