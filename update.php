@@ -28,5 +28,7 @@ try {
   exit();
 }
 
-header("Location:manual_view.php");
+//header("Location:manual_view.php");
+header("Location:manual_detail.php?id=$id");
+
 exit();

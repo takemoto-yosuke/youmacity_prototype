@@ -155,8 +155,9 @@ margin: 0 auto 0;
 }
 #detail_manual{
 	border: solid 1px gray;
-	border-radius: 10px;
-	width: 1280px;
+	border-radius: 5px;
+	width: 1260px;
+	padding: 10px;
 }
 /* RESPONSIVE 設定
 ------------------------------------------------------------*/
