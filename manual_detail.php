@@ -8,7 +8,19 @@ $id = $_GET['id'];
 $pdo = connect_to_db();
 
 // SQL実行
-$sql = 'SELECT * FROM manual WHERE id=:id';
+//$sql = 'SELECT * FROM manual WHERE id=:id';
+
+//manualテーブルとusersテーブルを結合
+$sql = 
+'SELECT 
+*
+FROM
+  manual
+  LEFT OUTER JOIN(SELECT id AS user_id, user_name FROM users)
+  AS join_users
+  ON  manual.user_name_id = join_users.user_id
+  WHERE id=:id';
+
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 try {
@@ -25,6 +37,20 @@ $embedded_url = str_replace("watch?v=", "embed/", $thumbnail_url);
 
 //日付
 $updated_day = substr($record["updated_at"], 0, 10);
+
+/// oEmebdからメタ情報取得して表示（タイトル取得）
+$oembed_url = "https://www.youtube.com/oembed?url={$thumbnail_url}&format=json";
+$ch = curl_init( $oembed_url );
+curl_setopt_array( $ch, [
+  CURLOPT_RETURNTRANSFER => 1
+] );
+$resp = curl_exec( $ch );
+ 
+$metas = json_decode( $resp, true );
+//youtube非公開設定だとタイトルがNULLとなる
+if(!isset($metas["title"])){
+    $metas["title"] = "非公開";
+}
 ?>
 
 <!doctype html>
@@ -47,7 +73,7 @@ $updated_day = substr($record["updated_at"], 0, 10);
 	<div id="mainManual">
 		<div id="contents"> 
             <div id='detail_title'>
-                <p>タイトル</p>
+                <p>タイトル：<?= $metas["title"] ?></p>
             </div>
             <div id='detail_updated'>
                 <p>更新日：<?= $updated_day ?></p>

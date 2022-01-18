@@ -7,7 +7,6 @@ $login_pass = $_POST['login_pass'];
 
 $pdo = connect_to_db();
 
-// username，password，is_deletedの3項目全てを満たすデータを抽出する．
 $sql = 'SELECT * FROM users WHERE user_name=:login_name AND password=:login_pass';
 
 $stmt = $pdo->prepare($sql);
@@ -30,6 +29,7 @@ if (!$val) {
   $_SESSION = array();
 //  $_SESSION['session_id'] = session_id();
   $_SESSION['user_name'] = $val['user_name'];
+  $_SESSION['id'] = $val['id'];  
   header("Location:manual_view.php");
   exit();
 }

@@ -1,3 +1,28 @@
+<?php
+
+include('functions.php');
+$pdo = connect_to_db();
+
+$sql = 'SELECT * FROM groups';
+
+$stmt = $pdo->prepare($sql);
+
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$output = "";
+foreach ($result as $record) {
+  $output .= "<option value='{$record["id"]}'>{$record["group_name"]}</option>";
+}  
+
+?>
+
+
 <!doctype html>
 <html lang="ja">
 
@@ -25,7 +50,14 @@
             <div id="form_url">
                 <p>パスワード</p> 
                 <input type="password" name="signup_pass" style="width: 300px;">
-            </div>            
+            </div>   
+            <div id="form_url">
+                <p>グループ</p> 
+                <select name="group_id" id="editer" style="width: 300px;">
+                <option>--- グループ ---</option>
+                <?= $output ?>
+                </select>
+            </div>                        
             <div style="text-align: left; padding: 20px 0px 20px 20px;">
                 <button>登録</button>
             </div>

@@ -15,13 +15,14 @@ $contents = $_POST['contents'];
 include('functions.php');
 $pdo = connect_to_db();
 
-$sql = 'INSERT INTO manual(id, user_name, contents, youtube_thumbnail, updated_at) VALUES(NULL, :login_name, :contents, :youtube_thumbnail, now())';
+//$sql = 'INSERT INTO manual(id, user_name, contents, youtube_thumbnail, updated_at) VALUES(NULL, :login_name, :contents, :youtube_thumbnail, now())';
+$sql = 'INSERT INTO manual(id, user_name_id, contents, youtube_thumbnail, updated_at) VALUES(NULL, :login_name, :contents, :youtube_thumbnail, now())';
 
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':youtube_thumbnail', $youtube_thumbnail, PDO::PARAM_STR);
 $stmt->bindValue(':contents', $contents, PDO::PARAM_STR);
-$stmt->bindValue(':login_name', $_SESSION["user_name"], PDO::PARAM_STR);
-
+//$stmt->bindValue(':login_name', $_SESSION["user_name"], PDO::PARAM_STR);
+$stmt->bindValue(':login_name', $_SESSION["id"], PDO::PARAM_STR);
 try {
   $status = $stmt->execute();
 } catch (PDOException $e) {

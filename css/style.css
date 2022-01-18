@@ -159,6 +159,23 @@ margin: 0 auto 0;
 	width: 1260px;
 	padding: 10px;
 }
+
+/* selecter 設定
+------------------------------------------------------------*/
+#select_editer{
+	display: flex;
+	margin: 0 auto 0;
+    width: 1300px;
+	justify-content: right;
+    margin-bottom: 5px;
+}
+#editer{
+	font-size: 20px;
+}
+.select_tab{
+	margin-left: 5px;
+}
+
 /* RESPONSIVE 設定
 ------------------------------------------------------------*/
 
@@ -317,8 +334,6 @@ margin: 0 auto 0;
 		width: 100%;
 	}
 
-
-
 }	
-}
+
 
