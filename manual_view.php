@@ -32,8 +32,35 @@ FROM
   ON  join_users.group_id = join_groups.groups_id
   ORDER BY updated_at DESC';
 
-$sql2 = 'SELECT * FROM users';
-$sql3 = 'SELECT * FROM groups';
+$sql2 = 
+'
+SELECT 
+*
+FROM
+  manual
+  LEFT OUTER JOIN(SELECT id AS user_id, user_name, group_id FROM users)
+  AS join_users
+  ON  manual.user_name_id = join_users.user_id
+  LEFT OUTER JOIN (SELECT id AS groups_id, group_name FROM groups)
+  AS join_groups
+  ON  join_users.group_id = join_groups.groups_id
+  GROUP BY user_id';
+
+$sql3 = 
+'
+SELECT 
+*
+FROM
+  manual
+  LEFT OUTER JOIN(SELECT id AS user_id, user_name, group_id FROM users)
+  AS join_users
+  ON  manual.user_name_id = join_users.user_id
+  LEFT OUTER JOIN (SELECT id AS groups_id, group_name FROM groups)
+  AS join_groups
+  ON  join_users.group_id = join_groups.groups_id
+  GROUP BY group_id';
+//$sql2 = 'SELECT * FROM users';
+//$sql3 = 'SELECT * FROM groups';
 
 $stmt = $pdo->prepare($sql);
 $stmt2 = $pdo->prepare($sql2);
@@ -135,6 +162,7 @@ $metas = json_decode( $resp, true );
 foreach ($result2 as $record2) {
   $output2 .= "<option value='{$record2["user_name"]}'>{$record2["user_name"]}</option>";
 }  
+
 foreach ($result3 as $record3) {
   $output3 .= "<option value='{$record3["group_name"]}'>{$record3["group_name"]}</option>";
 }   
@@ -161,7 +189,7 @@ foreach ($result3 as $record3) {
         <div class="select_tab">
         <form method='POST' action=''>
             <select name="group" id="editer" onchange="this.form.submit()">
-                <option value="1">--- グループ ---</option>
+                <option value="1">--- 所属 ---</option>
                 <?= $output3 ?>
             </select> 
         </form>
@@ -187,7 +215,7 @@ foreach ($result3 as $record3) {
                 <p>更新日</p>
             </div>  
             <div id="user">
-                <p>グループ/編集者</p>
+                <p>所属/編集者</p>
             </div> 
         </div>    
 

@@ -52,9 +52,9 @@ foreach ($result as $record) {
                 <input type="password" name="signup_pass" style="width: 300px;">
             </div>   
             <div id="form_url">
-                <p>グループ</p> 
+                <p>所属</p> 
                 <select name="group_id" id="editer" style="width: 300px;">
-                <option>--- グループ ---</option>
+                <option>--- 所属 ---</option>
                 <?= $output ?>
                 </select>
             </div>                        
