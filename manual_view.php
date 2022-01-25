@@ -117,7 +117,6 @@ curl_setopt_array( $ch, [
   CURLOPT_RETURNTRANSFER => 1
 ] );
 $resp = curl_exec( $ch );
- 
 $metas = json_decode( $resp, true );
   
   if (isset($_POST['editer']) && ($record["user_name"] != $_POST['editer'])){continue;} 

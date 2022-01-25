@@ -1,7 +1,7 @@
 <?php
 
 include('functions.php');
-check_login();
+check_login_admin();
 $pdo = connect_to_db();
 
 $sql = 'SELECT * FROM groups';

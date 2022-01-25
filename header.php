@@ -6,7 +6,7 @@
             <div class="panel">
                 <ul>
                 <?php             
-                if (isset($_SESSION["user_name"])) {
+                if (isset($_SESSION["user_name"]) && $_SESSION["user_name"] == "たけもと") {
                 ?>                  
                     <li><a href="index.php">TOP</a></li>
                     <li><a href="manual_view.php">MANUAL</a></li>
@@ -14,7 +14,16 @@
                     <li><a href="manual_tool.php">TOOL</a></li>
                     <li><a href="logout.php">LOGOUT「<?php echo $_SESSION["user_name"] ?>」</a></li>
                 <?php
-                }else{
+                }
+                else if (isset($_SESSION["user_name"])) {
+                ?>                  
+                    <li><a href="index.php">TOP</a></li>
+                    <li><a href="manual_view.php">MANUAL</a></li>
+                    <li><a href="manual_create_new.php">NEW</a></li>
+                    <li><a href="logout.php">LOGOUT「<?php echo $_SESSION["user_name"] ?>」</a></li>
+                <?php
+                }                
+                else{
                 ?>    
                     <li><a href="index.php">TOP</a></li> 
                     <li><a href="login_page.php">SIGN IN</a></li>

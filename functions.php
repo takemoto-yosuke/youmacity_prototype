@@ -22,3 +22,12 @@ function check_login()
     exit();
   } 
 }
+
+function check_login_admin()
+{
+  session_start();
+  if (!isset($_SESSION["user_name"]) || $_SESSION["user_name"] != "たけもと") {
+    header('Location:login_page.php');
+    exit();
+  } 
+}
